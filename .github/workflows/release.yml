@@ -4,6 +4,12 @@ on:
     branches:
       - main
 
+# Ajouter les permissions
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+
 jobs:
   release:
     runs-on: ubuntu-latest
@@ -14,11 +20,12 @@ jobs:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '20'  # ← Changer de '18' à '20'
+          node-version: '20'
           cache: 'yarn'
           cache-dependency-path: './client/yarn.lock'
 
@@ -28,4 +35,5 @@ jobs:
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_ENV: production
         run: yarn semantic-release

@@ -1,29 +1,58 @@
-version: "3.7"
+version: '3.8'
 
 services:
-  kestra:
-    image: kestra/kestra:latest-full
-    ports:
-      - "8080:8080"
-      - "8081:8081"
+  mysql:
+    image: mysql:8.3
+    container_name: noco-mysql
+    restart: unless-stopped
     environment:
-      - KESTRA_CONFIGURATION=k
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: noco_db
+      MYSQL_USER: noco
+      MYSQL_PASSWORD: PUlSn2o066nU
+      MYSQL_CHARSET: utf8mb4
+      MYSQL_COLLATION: utf8mb4_unicode_ci
+    ports:
+      - "6013:3306"
     volumes:
-      - kestra_data:/app/storage
-      - kestra_temp:/tmp
+      - noco-data:/var/lib/mysql
+    networks:
+      - noco-network
 
-  elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:8.6.2
-    environment:
-      - discovery.type=single-node
-      - xpack.security.enabled=false
-      - ES_JAVA_OPTS=-Xms512m -Xmx512m
+  server:
+    build:
+      context: ./server
+      dockerfile: dockerfile
+    container_name: noco-server
     ports:
-      - "9200:9200"
+      - "6011:3333"
+    env_file:
+      - ./server/.env
+    restart: unless-stopped
     volumes:
-      - es_data:/usr/share/elasticsearch/data
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - noco-network
+
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    container_name: noco-client
+    ports:
+      - "6012:80"
+    depends_on:
+      - server
+    networks:
+      - noco-network
+
+networks:
+  noco-network:
+    external: true
+    name: noco-network
 
 volumes:
-  kestra_data:
-  kestra_temp:
-  es_data:
+  noco-data:
+    driver: local
+  noco-temp:
+    driver: local

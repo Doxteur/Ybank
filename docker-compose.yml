@@ -1,0 +1,29 @@
+version: "3.7"
+
+services:
+  kestra:
+    image: kestra/kestra:latest-full
+    ports:
+      - "8080:8080"
+      - "8081:8081"
+    environment:
+      - KESTRA_CONFIGURATION=k
+    volumes:
+      - kestra_data:/app/storage
+      - kestra_temp:/tmp
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.6.2
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+      - ES_JAVA_OPTS=-Xms512m -Xmx512m
+    ports:
+      - "9200:9200"
+    volumes:
+      - es_data:/usr/share/elasticsearch/data
+
+volumes:
+  kestra_data:
+  kestra_temp:
+  es_data:

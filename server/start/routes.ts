@@ -15,5 +15,6 @@ router
     router.post('/auth/login', [AuthController, 'login'])
 
     router.post('/auth/register', [AuthController, 'register'])
+
   })
   .prefix('/api')

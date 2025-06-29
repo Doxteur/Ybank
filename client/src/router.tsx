@@ -1,5 +1,5 @@
 import { createBrowserRouter } from 'react-router';
-import Home from '@/pages/Home';
+import Landing from '@/pages/Landing';
 import { About } from '@/pages/About';
 import { Contact } from '@/pages/Contact';
 import Dashboard from '@/pages/Dashboard';
@@ -17,7 +17,7 @@ export const router = createBrowserRouter([
         path: '/',
         element: (
           <HomeRedirect>
-            <Home />
+            <Landing />
           </HomeRedirect>
         ),
       },

@@ -70,7 +70,7 @@ const testimonials = [
   },
 ]
 
-function Home() {
+function Landing() {
   const navigate = useNavigate();
   return (
     <div className="min-h-screen bg-[#10111a] relative overflow-hidden">
@@ -377,4 +377,4 @@ function Home() {
   )
 }
 
-export default Home
+export default Landing

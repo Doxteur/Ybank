@@ -100,7 +100,6 @@ function Landing() {
           <li><a href="#testimonials" className="hover:text-white transition">Avis</a></li>
         </ul>
         <div className="flex gap-4 items-center">
-          <Button variant="ghost" className="text-white/80 hover:text-white">Tarifs</Button>
           <Button className="bg-violet-600 hover:bg-violet-700 text-white px-6 py-2 rounded-full shadow-lg" onClick={() => navigate('/register')}>Créer un compte</Button>
         </div>
       </nav>
@@ -176,7 +175,7 @@ function Landing() {
             </div>
             <div className="p-7 flex flex-col h-full">
               <h3 className="text-white font-bold text-xl mb-2">Gestion des factures</h3>
-              <p className="text-white/60 text-base mb-6">Gérez et archivez vos factures en un clic.</p>
+              <p className="text-white/60 text-base mb-6">Gérez et archivez vos factures en un clic !</p>
               <div className="flex gap-2 mt-auto">
                 <Button variant="ghost" className="rounded-full px-4 py-1 text-sm text-white/80 border border-white/10 hover:bg-violet-600/10 transition">Voir la liste</Button>
                 <Button variant="ghost" className="rounded-full px-4 py-1 text-sm flex items-center gap-1 text-violet-400 border border-white/10 hover:bg-violet-600/10 transition"><Download className="w-4 h-4" /> Télécharger</Button>

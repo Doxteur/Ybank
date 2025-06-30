@@ -123,6 +123,7 @@ jobs:
           subject: "🚀 Ybank - Déploiement ${{ job.status }}"
           to: ${{ secrets.NOTIFICATION_EMAIL }}
           from: "Ybank CI/CD <${{ secrets.GMAIL_USERNAME }}>"
+          content_type: html
           body: |
             <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
               <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; border-radius: 8px 8px 0 0;">

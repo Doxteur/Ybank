@@ -20,9 +20,7 @@ services:
       - noco-network
 
   server:
-    build:
-      context: ./server
-      dockerfile: dockerfile
+    image: doxteurn/ynovbank-server:latest
     container_name: noco-server
     ports:
       - "6011:3333"
@@ -35,9 +33,7 @@ services:
       - noco-network
 
   client:
-    build:
-      context: ./client
-      dockerfile: Dockerfile
+    image: doxteurn/ynovbank-client:latest
     container_name: noco-client
     ports:
       - "6012:80"

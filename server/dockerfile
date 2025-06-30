@@ -8,6 +8,10 @@ COPY package*.json ./
 RUN yarn install
 
 COPY . .
+COPY .env.example .env.example
+
+# Si .env n'existe pas, on le crée à partir de .env.example
+RUN [ -f .env ] || cp .env.example .env
 
 RUN yarn run build --ignore-ts-errors
 RUN cp .env build/.env

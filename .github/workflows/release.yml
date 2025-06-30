@@ -28,6 +28,7 @@ jobs:
             -Dsonar.projectName=Ybank
 
   release:
+    needs: sonar
     runs-on: ubuntu-latest
     defaults:
       run:

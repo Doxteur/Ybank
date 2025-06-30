@@ -3,52 +3,52 @@ version: '3.8'
 services:
   mysql:
     image: mysql:8.3
-    container_name: noco-mysql
+    container_name: ybank-mysql
     restart: unless-stopped
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: noco_db
-      MYSQL_USER: noco
+      MYSQL_DATABASE: ybank_db
+      MYSQL_USER: ybank
       MYSQL_PASSWORD: PUlSn2o066nU
       MYSQL_CHARSET: utf8mb4
       MYSQL_COLLATION: utf8mb4_unicode_ci
     ports:
       - "6013:3306"
     volumes:
-      - noco-data:/var/lib/mysql
+      - ybank-data:/var/lib/mysql
     networks:
-      - noco-network
+      - ybank-network
 
   server:
     image: doxteurn/ynovbank-server:latest
-    container_name: noco-server
+    container_name: ybank-server
     ports:
-      - "6011:3333"
+      - "7011:3333"
     env_file:
       - ./server/.env
     restart: unless-stopped
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     networks:
-      - noco-network
+      - ybank-network
 
   client:
     image: doxteurn/ynovbank-client:latest
-    container_name: noco-client
+    container_name: ybank-client
     ports:
-      - "6012:80"
+      - "7012:80"
     depends_on:
       - server
     networks:
-      - noco-network
+      - ybank-network
 
 networks:
-  noco-network:
+  ybank-network:
     external: true
-    name: noco-network
+    name: ybank-network
 
 volumes:
-  noco-data:
+  ybank-data:
     driver: local
-  noco-temp:
+  ybank-temp:
     driver: local

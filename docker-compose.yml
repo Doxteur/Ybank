@@ -1,7 +1,7 @@
 version: '3.8'
 
 services:
-  mysql:
+  ybank-mysql:
     image: mysql:8.3
     container_name: ybank-mysql
     restart: unless-stopped
@@ -13,14 +13,14 @@ services:
       MYSQL_CHARSET: utf8mb4
       MYSQL_COLLATION: utf8mb4_unicode_ci
     ports:
-      - "6013:3306"
+      - "7013:3306"
     volumes:
       - ybank-data:/var/lib/mysql
     networks:
       - ybank-network
 
-  server:
-    image: doxteurn/ynovbank-server:latest
+  ybank-server:
+    image: doxteurn/ynovbank-backend:latest
     container_name: ybank-server
     ports:
       - "7011:3333"
@@ -33,18 +33,17 @@ services:
       - ybank-network
 
   client:
-    image: doxteurn/ynovbank-client:latest
+    image: doxteurn/ynovbank-frontend:latest
     container_name: ybank-client
     ports:
       - "7012:80"
     depends_on:
-      - server
+      - ybank-server
     networks:
       - ybank-network
 
 networks:
   ybank-network:
-    external: true
     name: ybank-network
 
 volumes:

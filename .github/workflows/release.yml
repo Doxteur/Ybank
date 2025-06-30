@@ -70,3 +70,19 @@ jobs:
           tags: |
             ${{ secrets.DOCKER_USERNAME }}/ynovbank-backend:latest
             ${{ secrets.DOCKER_USERNAME }}/ynovbank-backend:${{ github.sha }}
+
+      - name: Install SSH key
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          known_hosts: ${{ secrets.KNOWN_HOSTS }}
+
+      - name: Deploy to server
+        run: |
+          ssh root@92.112.192.183 '
+            cd /app/Ybank &&
+            git remote set-url origin git@github.com:Doxteur/Ybank.git &&
+            git pull &&
+            docker compose pull &&
+            docker compose up -d
+          '

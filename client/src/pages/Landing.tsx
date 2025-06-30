@@ -125,7 +125,7 @@ function Landing() {
           className="text-white text-4xl md:text-6xl font-bold text-center mb-6 leading-tight"
         >
           La banque nouvelle génération<br />
-          pour vos finances, votre avenir.
+          pour vos finances, votre avenir !
         </motion.h1>
         {/* Sous-titre */}
         <motion.p

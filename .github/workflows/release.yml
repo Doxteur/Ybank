@@ -71,6 +71,10 @@ jobs:
             ${{ secrets.DOCKER_USERNAME }}/ynovbank-backend:latest
             ${{ secrets.DOCKER_USERNAME }}/ynovbank-backend:${{ github.sha }}
 
+  deploy:
+    needs: docker
+    runs-on: ubuntu-latest
+    steps:
       - name: Install SSH key
         uses: shimataro/ssh-key-action@v2
         with:

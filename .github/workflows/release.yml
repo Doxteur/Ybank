@@ -123,43 +123,45 @@ jobs:
           subject: "🚀 Ybank - Déploiement ${{ job.status }}"
           to: ${{ secrets.NOTIFICATION_EMAIL }}
           from: "Ybank CI/CD <${{ secrets.GMAIL_USERNAME }}>"
-          content_type: html
           body: |
-            <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-              <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; border-radius: 8px 8px 0 0;">
-                <h1 style="margin: 0;">🚀 Ybank CI/CD</h1>
-                <p style="margin: 10px 0 0 0; opacity: 0.9;">Rapport de déploiement automatique</p>
-              </div>
+            🚀 Ybank CI/CD - Rapport de déploiement automatique
 
-              <div style="padding: 20px; border: 1px solid #e9ecef; border-radius: 0 0 8px 8px;">
-                <h3>📋 Informations du déploiement</h3>
-                <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
-                  <tr><td style="padding: 8px; border-bottom: 1px solid #eee;"><strong>Commit :</strong></td><td style="padding: 8px; border-bottom: 1px solid #eee;">${{ github.sha }}</td></tr>
-                  <tr><td style="padding: 8px; border-bottom: 1px solid #eee;"><strong>Branche :</strong></td><td style="padding: 8px; border-bottom: 1px solid #eee;">${{ github.ref_name }}</td></tr>
-                  <tr><td style="padding: 8px; border-bottom: 1px solid #eee;"><strong>Déclencheur :</strong></td><td style="padding: 8px; border-bottom: 1px solid #eee;">${{ github.actor }}</td></tr>
-                  <tr><td style="padding: 8px; border-bottom: 1px solid #eee;"><strong>Date :</strong></td><td style="padding: 8px; border-bottom: 1px solid #eee;">${{ github.event.head_commit.timestamp }}</td></tr>
-                </table>
+            ================================================
 
-                <h3>🔧 Étapes de la pipeline</h3>
-                <ul style="list-style: none; padding: 0;">
-                  <li style="padding: 8px 0; border-bottom: 1px solid #f8f9fa;">✅ Analyse SonarQube</li>
-                  <li style="padding: 8px 0; border-bottom: 1px solid #f8f9fa;">✅ Release automatique</li>
-                  <li style="padding: 8px 0; border-bottom: 1px solid #f8f9fa;">✅ Build et push Docker</li>
-                  <li style="padding: 8px 0; border-bottom: 1px solid #f8f9fa;">✅ Déploiement serveur</li>
-                </ul>
+            📋 INFORMATIONS DU DÉPLOIEMENT
+            ==============================
 
-                <h3>🐳 Images Docker déployées</h3>
-                <div style="background: #f8f9fa; padding: 15px; border-radius: 4px; margin-bottom: 20px;">
-                  <p style="margin: 5px 0;"><strong>Frontend:</strong> ${{ secrets.DOCKER_USERNAME }}/ynovbank-frontend:${{ github.sha }}</p>
-                  <p style="margin: 5px 0;"><strong>Backend:</strong> ${{ secrets.DOCKER_USERNAME }}/ynovbank-backend:${{ github.sha }}</p>
-                </div>
+            ✅ Statut : ${{ job.status }}
+            🔗 Commit : ${{ github.sha }}
+            🌿 Branche : ${{ github.ref_name }}
+            👤 Déclencheur : ${{ github.actor }}
+            📅 Date : ${{ github.event.head_commit.timestamp }}
 
-                <h3>🌐 Serveur de production</h3>
-                <p><strong>IP :</strong> 92.112.192.183</p>
+            ================================================
 
-                <hr style="border: none; border-top: 1px solid #e9ecef; margin: 20px 0;">
-                <p style="color: #6c757d; font-size: 12px; text-align: center;">
-                  Email automatique généré par GitHub Actions - Ybank CI/CD Pipeline
-                </p>
-              </div>
-            </div>
+            🔧 ÉTAPES DE LA PIPELINE
+            ========================
+
+            ✅ Analyse SonarQube
+            ✅ Release automatique
+            ✅ Build et push Docker
+            ✅ Déploiement serveur
+
+            ================================================
+
+            🐳 IMAGES DOCKER DÉPLOYÉES
+            ==========================
+
+            Frontend: ${{ secrets.DOCKER_USERNAME }}/ynovbank-frontend:${{ github.sha }}
+            Backend: ${{ secrets.DOCKER_USERNAME }}/ynovbank-backend:${{ github.sha }}
+
+            ================================================
+
+            🌐 SERVEUR DE PRODUCTION
+            ========================
+
+            IP : 92.112.192.183
+
+            ================================================
+
+            Email automatique généré par GitHub Actions - Ybank CI/CD Pipeline

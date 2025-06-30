@@ -24,6 +24,7 @@ Ce projet a été réalisé dans le cadre du module CI/CD et DevOps. L'objectif 
 - **Versionnement** : semantic-release avec Conventional Commits
 - **Déploiement** : Serveur VPS (production sur main)
 - **Notifications** : Envoi d'emails via GitHub Actions
+- **Qualité de code** : Analyse automatisée avec SonarQube auto-hébergé
 
 ---
 
@@ -57,10 +58,13 @@ Toutes les fonctionnalités sont développées sur des branches `feature/`, puis
 
 - **Build** : Compilation du frontend et du backend
 - **Test** : Lancement des tests unitaires et d'intégration (Jest)
+- **Analyse qualité** : Analyse automatique du code avec SonarQube (voir image ci-dessous)
 - **Scan sécurité** : (optionnel) Ajout possible avec des actions comme Snyk
 - **Artifact** : Build et push des images Docker sur Docker Hub
 - **Release** : semantic-release gère le versionnement et le changelog
 - **Deploy** : Déploiement automatique sur le serveur via SSH après chaque push sur main
+
+![alt text](https://i.ibb.co/p690trzF/image.png)
 
 Le pipeline est défini dans `.github/workflows/release.yml`.
 

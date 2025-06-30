@@ -10,7 +10,7 @@ if (process.env.NODE_ENV === 'production') {
 } else {
     // Development Configuration
     const isMobileDev = process.env.REACT_APP_MOBILE_DEV === 'true';
-    const devBaseUrl = isMobileDev ? 'http://192.168.56.1:6011/api' : 'http://localhost:6011/api';
+    const devBaseUrl = isMobileDev ? 'http://192.168.56.1:6011/api' : 'http://localhost:3333/api';
     REACT_APP_API_URL = `${devBaseUrl}`;
 }
 

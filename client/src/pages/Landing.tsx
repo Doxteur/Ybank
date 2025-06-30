@@ -101,7 +101,7 @@ function Landing() {
         </ul>
         <div className="flex gap-4 items-center">
           <Button variant="ghost" className="text-white/80 hover:text-white">Tarifs</Button>
-          <Button className="bg-violet-600 hover:bg-violet-700 text-white px-6 py-2 rounded-full shadow-lg">Créer un compte</Button>
+          <Button className="bg-violet-600 hover:bg-violet-700 text-white px-6 py-2 rounded-full shadow-lg" onClick={() => navigate('/register')}>Créer un compte</Button>
         </div>
       </nav>
 

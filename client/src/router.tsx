@@ -8,6 +8,7 @@ import { AuthGuard } from '@/components/core/AuthGuard';
 import { HomeRedirect } from '@/components/core/HomeRedirect';
 import { RootLayout } from '@/components/core/layouts/RootLayout';
 import Login from '@/pages/Login';
+import Register from '@/pages/Register';
 
 export const router = createBrowserRouter([
   {
@@ -24,6 +25,10 @@ export const router = createBrowserRouter([
       {
         path: '/login',
         element: <Login />,
+      },
+      {
+        path: '/register',
+        element: <Register />,
       },
       {
         path: '/dashboard',
